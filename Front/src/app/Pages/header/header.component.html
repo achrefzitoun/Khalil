@@ -1,0 +1,32 @@
+<div class="layout-topbar">
+    <div class="topbar-left">
+        <img src="assets\Images\R.jpeg" alt="Logo" title="Logo" height="80" width="80"
+            class="Logo" />
+    </div>
+    <div class="topbar-right">
+
+        <ul class="topbar-menu">
+            <li class="profile-item static sm:relative">
+                <a tabindex="0" (click)="toggleMenu()">
+                    <i class="pi pi-user mr-3"></i>
+                    <span class="font-semibold">nom prenom</span>
+                </a>
+                <ul [ngClass]="{'hidden': !menuVisible}"
+                    class="list-none p-3 m-0 border-round shadow-2 absolute surface-overlay origin-top w-full sm:w-12rem mt-2 right-0 z-5 top-auto">
+                    <li>
+                        
+                        <a pRipple
+                            class="flex p-2 border-round align-items-center hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
+                            (click)="logout()">
+                            <i class="pi pi-sign-out mr-3"></i>
+                            <span class="flex flex-column">
+                                <span style="font-size: 14px;">Log out</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+      </div>
+</div>

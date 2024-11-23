@@ -1,0 +1,145 @@
+<div class="background-container">
+    <div class="background-image"></div>
+    <div class="flex justify-content-center align-items-center h-screen">
+
+        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+            <div class="text-center mb-5">
+                <img src="assets/Images/R.jpeg" alt="Image" height="90" class="mb-3">
+                <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
+                <span class="text-600 font-medium line-height-3">Already have an account?</span>
+                <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="/login">Login now!</a>
+            </div>
+            <form #f="ngForm">
+                <div class="col-12">
+                    <div class="p-fluid p-formgrid grid">
+                        <!-- Prénom -->
+
+                        <div class="field col-12 md:col-6">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-user"></i>
+                                </span>
+                                <input pInputText required [(ngModel)]="user.firstName" name="firstName"
+                                    placeholder="First name" #firstName="ngModel" />
+                            </div>
+                            <div class="alert-danger">
+                                <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                                    <br>First name is required.<br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-6">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-user"></i>
+                                </span>
+                                <input pInputText required [(ngModel)]="user.secondName" name="secondName"
+                                    placeholder="Second name" #secondName="ngModel" />
+                            </div>
+                            <div class="alert-danger">
+                                <div *ngIf="secondName.invalid && secondName.touched" class="text-danger">
+                                    <br>Second name is required.<br>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <!-- Date de naissance (Âge minimum de 17 ans) -->
+                        <div class="field col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-calendar"></i>
+                                </span>
+                                <p-calendar [(ngModel)]="user.birthDate" name="birthDate" placeholder="Birth date"
+                                    [yearRange]="yearRange" [maxDate]="maxDate" #birthDate="ngModel"></p-calendar>
+
+                                <div *ngIf="birthDate.invalid && birthDate.touched" class="text-danger">
+                                    You must be at least 17 years old.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Numéro de téléphone -->
+                        <div class="field col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-phone"></i>
+                                </span>
+                                <input pInputText required [(ngModel)]="user.phoneNumber" name="phoneNumber"
+                                    placeholder="Phone number" pattern="^(\+?\d{1,3}[- ]?)?\d{10}$"
+                                    #phoneNumber="ngModel" />
+                                <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
+                                    Enter a valid phone number.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="field col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-at"></i>
+                                </span>
+                                <input pInputText required [(ngModel)]="user.email" name="email"
+                                    placeholder="E-mail address" type="email" #email="ngModel" />
+                                <div *ngIf="email.invalid && email.touched" class="text-danger">
+                                    Enter a valid email address.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Identifiant -->
+                        <div class="field col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i class="pi pi-info"></i>
+                                </span>
+                                <input pInputText required [(ngModel)]="user.identifier" name="identifier"
+                                    placeholder="Identifier" #identifier="ngModel" />
+                                <div *ngIf="identifier.invalid && identifier.touched" class="text-danger">
+                                    Identifier is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mot de passe -->
+                        <div class="field col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i *ngIf="!pwdVerif" class="pi pi-times"></i>
+                                    <i *ngIf="pwdVerif" class="pi pi-check"></i>
+                                </span>
+                                <input pInputText required (input)="verifPwd12(password1, password2)"
+                                    [(ngModel)]="password1" placeholder="Password" id="password11" name="password11"
+                                    #password11="ngModel" />
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <i *ngIf="!pwdVerif" class="pi pi-times"></i>
+                                    <i *ngIf="pwdVerif" class="pi pi-check"></i>
+                                </span>
+                                <input pInputText required (input)="verifPwd12(password1, password2)"
+                                    [(ngModel)]="password2" placeholder="Repeat password" id="password21"
+                                    name="password21" #password21="ngModel" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="field col-12 md:col-12">
+                            <p-checkbox name="groupname" value="confirmation" [binary]="true" [(ngModel)]="confirmation"
+                                label="By creating an account, I confirm that I have read and agree to the Terms of Service and Privacy Policy."></p-checkbox>
+                        </div>
+
+                        <button pButton [disabled]="f.invalid ?? false || !confirmation || user.birthDate == null"
+                            pRipple label="Register" icon="pi pi-user" class="w-full"></button>
+                    </div>
+                </div>
+            </form>
+        </div>

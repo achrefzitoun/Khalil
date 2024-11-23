@@ -1,0 +1,5 @@
+:host ::ng-deep .p-steps-item.p-highlight .p-steps-number {
+    color: #6f80d5;
+    background-color: rgb(253, 224, 229);
+    border: rgb(253, 224, 229);
+}

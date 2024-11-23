@@ -1,0 +1,34 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+@import "assets/layout/_config.scss";
+@import "assets/layout/_content.scss";
+@import "assets/layout/_footer.scss";
+@import "assets/layout/_main.scss";
+@import "assets/layout/_menu.scss";
+@import "assets/layout/_mixins.scss";
+@import "assets/layout/_badges.scss";
+
+@import "assets/layout/_preloading.scss";
+@import "assets/layout/_responsive.scss";
+
+@import "assets/layout/_topbar.scss";
+@import "assets/layout/_typography.scss";
+
+@import "assets/layout/_utils.scss";
+
+@import "assets/layout/_variables.scss";
+
+
+
+
+
+
+
+
+
+
+
+
+

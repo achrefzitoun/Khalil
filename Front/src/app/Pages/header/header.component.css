@@ -1,0 +1,44 @@
+.hidden {
+    display: none;
+}
+
+a {
+    color: black;
+
+}
+
+.dynamic-font-size {
+    font-size: calc(var(--base-font-size) + var(--scaling-factor));
+}
+
+
+.disabled {
+    pointer-events: none;
+    color: gray;
+    cursor: not-allowed;
+}
+
+
+.layout-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.card2 {
+    margin-top: 60px;
+    background-color: #ddd;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+:host ::ng-deep .p-menubar {
+    background-color: white;
+    border: 1 solid  gray;
+    height: auto;
+}
+
+
