@@ -67,6 +67,9 @@ import { NewreservationComponent } from './Biblio/newreservation/newreservation.
 import { BooksmanagmentComponent } from './Admin/booksmanagment/booksmanagment.component';
 import { UsermanagmentComponent } from './Admin/usermanagment/usermanagment.component';
 import { ReservationsmanagmentComponent } from './Admin/reservationsmanagment/reservationsmanagment.component';
+import { ManagereservationsComponent } from './User/managereservations/managereservations.component';
+import { ForgotpasswordComponent } from './User/forgotpassword/forgotpassword.component';
+import { NewpasswordComponent } from './User/newpassword/newpassword.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { ReservationsmanagmentComponent } from './Admin/reservationsmanagment/re
     NewreservationComponent,
     BooksmanagmentComponent,
     UsermanagmentComponent,
-    ReservationsmanagmentComponent
+    ReservationsmanagmentComponent,
+    ManagereservationsComponent,
+    ForgotpasswordComponent,
+    NewpasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,8 @@ public class User implements Serializable, UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idUser;
 
+    String numUSer;
+
     String firstName;
 
     String secondName;
