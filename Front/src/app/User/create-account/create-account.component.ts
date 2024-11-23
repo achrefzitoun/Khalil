@@ -8,24 +8,24 @@ import { User } from 'src/app/Models/User';
 })
 export class CreateAccountComponent implements OnInit {
 
-  user : User = new User();
-  pwdVerif : boolean = false;
+  user: User = new User();
+  pwdVerif: boolean = false;
 
   password1 !: string;
   password2 !: string;
 
-  confirmation : boolean = false;
+  confirmation: boolean = false;
 
   yearRange!: string;
   maxDate!: Date;
-  ngOnInit() : void{
+  ngOnInit(): void {
     const currentYear = new Date().getFullYear();
     this.yearRange = `1900:${currentYear - 17}`;
     this.maxDate = new Date(currentYear - 17, 11, 31);
   }
 
-verifPwd12(pwd1: string, pwd2: string): void {
-  this.pwdVerif = pwd1 === pwd2;
-}
+  verifPwd12(pwd1: string, pwd2: string): void {
+    this.pwdVerif = pwd1 === pwd2;
+  }
 
 }

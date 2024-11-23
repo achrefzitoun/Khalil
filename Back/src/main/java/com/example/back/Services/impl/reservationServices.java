@@ -52,6 +52,4 @@ public class reservationServices implements IReservationServices {
         reservation.setRemis(true);
         return reservationRepository.save(reservation);
     }
-
-
 }

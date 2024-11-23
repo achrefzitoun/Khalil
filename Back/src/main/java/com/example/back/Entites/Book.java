@@ -40,6 +40,8 @@ public class Book implements Serializable {
 
     Integer nbCopies;
 
+    String demension;
+
     @OneToMany(mappedBy = "book")
     @JsonIgnore
     private Set<Reservation> reservations;

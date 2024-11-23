@@ -63,6 +63,10 @@ import { BookslistComponent } from './Biblio/bookslist/bookslist.component';
 import { HeaderComponent } from './Pages/header/header.component';
 import { FooterComponent } from './Pages/footer/footer.component';
 import { CreateAccountComponent } from './User/create-account/create-account.component';
+import { NewreservationComponent } from './Biblio/newreservation/newreservation.component';
+import { BooksmanagmentComponent } from './Admin/booksmanagment/booksmanagment.component';
+import { UsermanagmentComponent } from './Admin/usermanagment/usermanagment.component';
+import { ReservationsmanagmentComponent } from './Admin/reservationsmanagment/reservationsmanagment.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,11 @@ import { CreateAccountComponent } from './User/create-account/create-account.com
     BookslistComponent,
     HeaderComponent,
     FooterComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    NewreservationComponent,
+    BooksmanagmentComponent,
+    UsermanagmentComponent,
+    ReservationsmanagmentComponent
   ],
   imports: [
     BrowserModule,
