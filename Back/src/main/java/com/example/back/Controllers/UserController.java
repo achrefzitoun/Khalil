@@ -4,6 +4,7 @@ import com.example.back.Entites.User;
 import com.example.back.Services.IUserServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,11 @@ public class UserController {
     @PostMapping("/addUser")
     void addUser(@RequestBody User user){
         userServices.addUser(user);
+    }
+
+    @GetMapping("/findUser")
+    ResponseEntity<?> recupPassword(@RequestBody String email){
+        return userServices.recupPassword(email);
     }
 
 }
