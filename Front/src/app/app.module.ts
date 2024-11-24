@@ -144,7 +144,7 @@ import { NewpasswordComponent } from './User/newpassword/newpassword.component';
     PasswordModule,
     ToolbarModule,
     MatDialogModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

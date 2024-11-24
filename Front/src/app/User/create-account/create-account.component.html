@@ -19,11 +19,14 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.firstName" name="firstName"
-                                    placeholder="First name" #firstName="ngModel" />
+                                    placeholder="First name" #firstName="ngModel" pattern="^[A-Za-z]+$" />
                             </div>
                             <div class="alert-danger">
                                 <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
                                     <br>* First name is required.<br>
+                                    <div *ngIf="firstName.errors && firstName.errors['pattern']">
+                                        * First name must contain only alphabets (A-Z, a-z).<br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -34,11 +37,14 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.secondName" name="secondName"
-                                    placeholder="Second name" #secondName="ngModel" />
+                                    placeholder="Second name" #secondName="ngModel" pattern="^[A-Za-z]+$" />
                             </div>
                             <div class="alert-danger">
                                 <div *ngIf="secondName.invalid && secondName.touched" class="text-danger">
                                     <br>* Second name is required.<br>
+                                    <div *ngIf="secondName.errors && secondName.errors['pattern']">
+                                        * Second name must contain only alphabets (A-Z, a-z).<br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +57,11 @@
                                 </span>
                                 <p-calendar [(ngModel)]="user.birthDate" name="birthDate" placeholder="Birth date"
                                     [yearRange]="yearRange" [maxDate]="maxDate" #birthDate="ngModel"></p-calendar>
+                                <div class="alert-danger">
 
-                                <div *ngIf="birthDate.invalid && birthDate.touched" class="text-danger">
-                                    * You must be at least 17 years old.
+                                    <div *ngIf="birthDate.invalid && birthDate.touched" class="text-danger">
+                                        * You must be at least 17 years old.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +75,10 @@
                                 <input pInputText required [(ngModel)]="user.phoneNumber" name="phoneNumber"
                                     placeholder="Phone number" pattern="^(\+?\d{1,3}[- ]?)?\d{10}$"
                                     #phoneNumber="ngModel" />
+                            </div>
+                            <div class="alert-danger">
                                 <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
-                                    * Enter a valid phone number.
+                                    <br>* Enter a valid phone number.<br>
                                 </div>
                             </div>
                         </div>
@@ -80,9 +90,15 @@
                                     <i class="pi pi-at"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.email" name="email"
-                                    placeholder="E-mail address" type="email" #email="ngModel" />
+                                    placeholder="E-mail address" type="email" #email="ngModel"
+                                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
+                            </div>
+                            <div class="alert-danger">
                                 <div *ngIf="email.invalid && email.touched" class="text-danger">
-                                    * Enter a valid email address.
+                                    <br>* Enter an email address.<br>
+                                </div>
+                                <div *ngIf="email.invalid && email.errors && email.errors['pattern'] && email.touched">
+                                    * Email must follow the format ****&#64;***.*** .<br>
                                 </div>
                             </div>
                         </div>
@@ -94,12 +110,19 @@
                                     <i class="pi pi-info"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.identifier" name="identifier"
-                                    placeholder="Identifier" #identifier="ngModel" />
+                                    placeholder="Identifier" #identifier="ngModel" pattern="a\d{8}" />
+                            </div>
+                            <div class="alert-danger">
                                 <div *ngIf="identifier.invalid && identifier.touched" class="text-danger">
-                                    * Identifier is required.
+                                    <br>* Identifier is required.<br>
+                                </div>
+
+                                <div *ngIf="identifier.errors && identifier.errors['pattern']">
+                                    * Identifier must start with "a" followed by 8 digits (e.g., a11111111).<br>
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Mot de passe -->
                         <div class="field col-12 md:col-12">
@@ -110,9 +133,38 @@
                                 </span>
                                 <input pInputText required (input)="verifPwd12(password1, password2)"
                                     [(ngModel)]="password1" placeholder="Password" id="password11" name="password11"
-                                    #password11="ngModel" />
+                                    #password11="ngModel"
+                                    pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{10,}$" />
                             </div>
+
+                            <div class="alert-danger">
+                                <div *ngIf="password11.invalid && password11.touched" class="text-danger">
+                                    <br>* Password is required.<br>
+                                    <div class="validation-messages">
+                                        <ul>
+                                            <li [ngClass]="{'text-success': hasUppercase, 'text-danger': !hasUppercase}">
+                                                One uppercase letter.
+                                            </li>
+                                            <li [ngClass]="{'text-success': hasDigit, 'text-danger': !hasDigit}">
+                                                One digit.
+                                            </li>
+                                            <li [ngClass]="{'text-success': hasSpecialChar, 'text-danger': !hasSpecialChar}">
+                                                One special character.
+                                            </li>
+                                            <li [ngClass]="{'text-success': isLongEnough, 'text-danger': !isLongEnough}">
+                                                Minimum of 10 characters.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
+
+
+
+
                         <div class="field col-12 md:col-12">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon">
@@ -122,6 +174,12 @@
                                 <input pInputText required (input)="verifPwd12(password1, password2)"
                                     [(ngModel)]="password2" placeholder="Repeat password" id="password21"
                                     name="password21" #password21="ngModel" />
+                            </div>
+                            <div class="alert-danger">
+                                <div *ngIf="(password21.invalid && password21.touched) ||  (password1!==password2 && password21.touched)"
+                                    class="text-danger">
+                                    <br>* Password incorrect.<br>
+                                </div>
                             </div>
                         </div>
 
