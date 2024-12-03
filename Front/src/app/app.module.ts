@@ -145,7 +145,10 @@ import { NewpasswordComponent } from './User/newpassword/newpassword.component';
     ToolbarModule,
     MatDialogModule
     ],
-  providers: [],
+  providers: [
+    DatePipe ,
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
