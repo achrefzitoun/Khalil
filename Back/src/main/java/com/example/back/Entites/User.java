@@ -1,5 +1,6 @@
 package com.example.back.Entites;
 
+import com.example.back.Entites.auth.Token;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -16,6 +18,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -35,7 +38,7 @@ public class User implements Serializable, UserDetails {
     String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    Role role = Role.USER;
+    Role role;
 
     String identifier;
 
@@ -49,14 +52,23 @@ public class User implements Serializable, UserDetails {
     @JsonIgnore
     private Set<Reservation> reservations;
 
+
+    String resetToken;
+
+    LocalDateTime resetTokenExpiryDate ;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Token> tokens ;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(role.name()));
     }
 
+
     @Override
     public String getPassword() {
-        return pwd;
+        return pwd ;
     }
 
     @Override
@@ -66,21 +78,21 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

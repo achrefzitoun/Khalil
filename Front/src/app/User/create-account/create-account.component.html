@@ -19,7 +19,7 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.firstName" name="firstName"
-                                    placeholder="First name" #firstName="ngModel" pattern="^[A-Za-z]+$" />
+                                    placeholder="First name" #firstName="ngModel" pattern="^[A-Za-z]+$" [(ngModel)]="request.firstname" />
                             </div>
                             <div class="alert-danger">
                                 <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
@@ -37,7 +37,7 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <input pInputText required [(ngModel)]="user.secondName" name="secondName"
-                                    placeholder="Second name" #secondName="ngModel" pattern="^[A-Za-z]+$" />
+                                    placeholder="Second name" #secondName="ngModel" pattern="^[A-Za-z]+$" [(ngModel)]="request.lastname" />
                             </div>
                             <div class="alert-danger">
                                 <div *ngIf="secondName.invalid && secondName.touched" class="text-danger">
@@ -56,7 +56,7 @@
                                     <i class="pi pi-calendar"></i>
                                 </span>
                                 <p-calendar [(ngModel)]="user.birthDate" name="birthDate" placeholder="Birth date"
-                                    [yearRange]="yearRange" [maxDate]="maxDate" #birthDate="ngModel"></p-calendar>
+                                    [yearRange]="yearRange" [maxDate]="maxDate" #birthDate="ngModel" [(ngModel)]="birthd"></p-calendar>
                                 <div class="alert-danger">
 
                                     <div *ngIf="birthDate.invalid && birthDate.touched" class="text-danger">
@@ -72,7 +72,7 @@
                                 <span class="p-inputgroup-addon">
                                     <i class="pi pi-phone"></i>
                                 </span>
-                                <input pInputText required [(ngModel)]="user.phoneNumber" name="phoneNumber"
+                                <input pInputText required [(ngModel)]="request.phoneNumber" name="phoneNumber"
                                     placeholder="Phone number" pattern="^(\+?\d{1,3}[- ]?)?\d{10}$"
                                     #phoneNumber="ngModel" />
                             </div>
@@ -89,7 +89,7 @@
                                 <span class="p-inputgroup-addon">
                                     <i class="pi pi-at"></i>
                                 </span>
-                                <input pInputText required [(ngModel)]="user.email" name="email"
+                                <input pInputText required [(ngModel)]="request.email" name="email"
                                     placeholder="E-mail address" type="email" #email="ngModel"
                                     pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
                             </div>
@@ -109,7 +109,7 @@
                                 <span class="p-inputgroup-addon">
                                     <i class="pi pi-info"></i>
                                 </span>
-                                <input pInputText required [(ngModel)]="user.identifier" name="identifier"
+                                <input pInputText required [(ngModel)]="request.identifier" name="identifier"
                                     placeholder="Identifier" #identifier="ngModel" pattern="a\d{8}" />
                             </div>
                             <div class="alert-danger">
@@ -189,7 +189,7 @@
                         </div>
 
                         <button pButton [disabled]="f.invalid ?? false || !confirmation || user.birthDate == null"
-                            pRipple label="Register" icon="pi pi-user" class="w-full"></button>
+                            pRipple label="Register" icon="pi pi-user" class="w-full" (click)="register()" ></button>
                     </div>
                 </div>
             </form>

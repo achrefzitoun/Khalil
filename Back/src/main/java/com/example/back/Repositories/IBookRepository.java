@@ -15,5 +15,5 @@ public interface IBookRepository extends JpaRepository<Book, Integer> {
 
     void deleteByIsbn(Integer isbn);
 
-    List<Book> findAllByTypeBooksContaining(TypeBook typeBook);
+    List<Book> findAllByTypeBookContaining(TypeBook typeBook);
 }

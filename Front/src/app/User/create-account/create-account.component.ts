@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegisterRequest } from 'src/app/Models/DTO/auth/RegisterRequest';
 import { User } from 'src/app/Models/User';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-create-account',
@@ -8,6 +12,9 @@ import { User } from 'src/app/Models/User';
 })
 export class CreateAccountComponent implements OnInit {
 
+  constructor( private authServ: AuthenticationService , private datePipe: DatePipe , private router: Router) {
+   
+   }
   user: User = new User();
   pwdVerif: boolean = false;
 
@@ -23,6 +30,16 @@ export class CreateAccountComponent implements OnInit {
   hasDigit: boolean = false;
   hasSpecialChar: boolean = false;
   isLongEnough: boolean = false;
+
+  request: RegisterRequest = new RegisterRequest();
+  passwordValid: boolean = true; 
+  repeatedPassword: string = '';
+  passwordsMatch: boolean = false;
+  passwordTouched: boolean = false;
+
+
+  birthd!: Date
+
 
   ngOnInit(): void {
     const currentYear = new Date().getFullYear();
@@ -40,4 +57,35 @@ export class CreateAccountComponent implements OnInit {
  
   }
 
+  register() {
+    
+      const dateconv = this.datePipe.transform(this.birthd, 'yyyy-MM-dd')!;
+
+      this.request.birthDate = dateconv;
+      this.request.password = this.password1 ; 
+      this.authServ.register(this.request).subscribe(
+        response => {
+          console.log('Password setup successful', response.token);
+          this.router.navigate(['/login']);
+
+        },
+        error => {
+          console.error('Failed to setup password', error);
+        }
+      );
+    
+  }
+  validatePassword(password: string): boolean {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  checkPasswordsMatch() {
+    this.passwordsMatch = this.request.password === this.repeatedPassword;
+  }
+
+  onPasswordInput() {
+    this.passwordTouched = true;
+    this.passwordValid = this.validatePassword(this.request.password);
+  }
 }

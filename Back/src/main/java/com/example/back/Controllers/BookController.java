@@ -17,8 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin(origins = "*")
 public class BookController {
 
-    @Autowired
-    private IBookServices bookService;
+    private final IBookServices bookService;
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveBook(@RequestParam("book") String bookString,
