@@ -23,11 +23,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class bookServices implements IBookServices {
 
-    @Autowired
-    private IBookRepository bookRepository;
+    private final IBookRepository bookRepository;
 
-    @Autowired
-    private IReservationsRepository reservationsRepository;
+    private final IReservationsRepository reservationsRepository;
 
     @Override
     public List<Book> findAll() {
@@ -85,7 +83,7 @@ public class bookServices implements IBookServices {
     @Override
     public List<Book> findBookByCategory(TypeBook typeBook) {
 
-        return bookRepository.findAllByTypeBooksContaining(typeBook);
+        return bookRepository.findAllByTypeBookContaining(typeBook);
     }
 
     public File getImage(String path) throws IOException {
